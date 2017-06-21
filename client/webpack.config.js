@@ -5,6 +5,10 @@ module.exports = {
     publicPath: '/js/',
     filename: 'index.js'
   },
+  devServer: {
+    historyApiFallback: true
+  },
+  devtool: 'inline-source-map',
   module: {
     loaders: [
       {
@@ -18,7 +22,10 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /(node_modules)/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2015', 'react', 'stage-2']
+        }
       }
     ]
   }
