@@ -1,0 +1,10 @@
+{
+  "login": {
+    "title": "Authorize",
+    "form": {
+      "username": "username",
+      "password": "password",
+      "submit": "Login"
+    }
+  }
+}

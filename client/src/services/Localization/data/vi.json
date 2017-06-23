@@ -1,0 +1,10 @@
+{
+  "login": {
+    "title": "Cho Phép",
+    "form": {
+      "username": "tài khoản",
+      "password": "mật khẩu",
+      "submit": "Đăng Nhập Ngay"
+    }
+  }
+}

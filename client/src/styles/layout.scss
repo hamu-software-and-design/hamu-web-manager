@@ -5,3 +5,7 @@
 .h-vh100 {
   height: 100vh;
 }
+
+.h-vhfill {
+  height: calc(100vh - 56px);
+}

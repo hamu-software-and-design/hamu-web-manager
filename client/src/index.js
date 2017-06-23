@@ -5,8 +5,8 @@ import {createBrowserHistory} from 'history'
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/app.scss'
 
-import Store from './services/Store.js'
-import Router from './services/Router.js'
+import Store from './services/Store/Index.js'
+import Router from './services/Router/Index.js'
 
 const history = createBrowserHistory()
 const appStore = new Store(history)
