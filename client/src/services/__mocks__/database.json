@@ -1,6 +1,11 @@
 {
   "auth": {
     "username": "admin",
-    "password": "admin"
+    "password": "admin",
+    "token": "admin-admin-admin"
+  },
+  "user": {
+    "username": "admin",
+    "role": 1
   }
 }
