@@ -1,2 +1,4 @@
 node_modules
-mongo_database
+cert.pem
+key.pem
+credentials.js
