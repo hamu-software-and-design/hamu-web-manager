@@ -1,14 +1,14 @@
 import React from 'react'
 import {Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, NavLink, Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap'
 import PropTypes from 'prop-types'
-import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import {parseQuery} from '../../services/Router/util.js'
+import LocaleButton from '../../containers/MainNavbar/LocaleButton.js'
 
 /**
  * Main navbar for the app
  */
-class MainNavbar extends React.Component {
+export default class MainNavbar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -36,7 +36,7 @@ class MainNavbar extends React.Component {
     const {location} = this.props
     const lang = parseQuery(location.search).lang
     return (
-      <Navbar className="bg-white z-index-5" toggleable light>
+      <Navbar className="z-index-5" toggleable light>
         <div className="container">
           <NavbarBrand>
             <span className="text-uppercase">Hamu Web Manager</span>
@@ -50,8 +50,8 @@ class MainNavbar extends React.Component {
                     <span className={"flag-icon flag-icon-" + ((lang == 'en') ? 'us' : 'vn') }></span>
                   </DropdownToggle>
                   <DropdownMenu className="dropdown-menu-right">
-                    <DropdownItem><NavLink tag={Link} to={location.pathname + '?lang=en'}><span className="flag-icon flag-icon-us"></span></NavLink></DropdownItem>
-                    <DropdownItem><NavLink tag={Link} to={location.pathname + '?lang=vi'}><span className="flag-icon flag-icon-vn"></span></NavLink></DropdownItem>
+                    <DropdownItem><NavLink tag={LocaleButton} to={'en'}><span className="flag-icon flag-icon-us"></span></NavLink></DropdownItem>
+                    <DropdownItem><NavLink tag={LocaleButton} to={'vi'}><span className="flag-icon flag-icon-vn"></span></NavLink></DropdownItem>
                   </DropdownMenu>
                 </Dropdown>
               </NavItem>
@@ -62,5 +62,3 @@ class MainNavbar extends React.Component {
     )
   }
 }
-
-export default withRouter(MainNavbar)

@@ -1,12 +1,16 @@
 import React from 'react'
 import {IntlProvider, addLocaleData} from 'react-intl'
 import PropTypes from 'prop-types'
+import { withRouter } from 'react-router'
+
 import en from 'react-intl/locale-data/en'
 import vi from 'react-intl/locale-data/vi'
 
 import enData from './data/en.json'
 import viData from './data/vi.json'
 import {flattenObject} from '../util/manipulation.js'
+import {parseQuery} from '../Router/util.js'
+
 
 addLocaleData([...en, ...vi])
 
@@ -15,17 +19,19 @@ const localeData = {
   vi: flattenObject(viData)
 }
 
-export default class LocaleProvider extends React.Component {
+class LocaleProvider extends React.Component {
   static propTypes = {
-    /** App language */
-    lang: PropTypes.string.isRequired
+    /** App location */
+    locale: PropTypes.string.isRequired
   }
   render() {
-    const messages = localeData[this.props.lang]
+    const {locale} = this.props
     return (
-      <IntlProvider locale={this.props.lang} messages={messages}>
+      <IntlProvider locale={locale} messages={localeData[locale]}>
         {this.props.children}
       </IntlProvider>
     )
   }
 }
+
+export default withRouter(LocaleProvider)

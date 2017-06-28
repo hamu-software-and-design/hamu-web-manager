@@ -1,5 +1,6 @@
 import {expect} from 'chai'
 import User from '../User.js'
+import {each} from 'async'
 
 describe('UserModel', function() {
   it('test required values', function(done) {
@@ -24,13 +25,11 @@ describe('UserModel', function() {
       email: 'him@her.com',
       thumbnail: 'WWW.her.com'
     })
-    newUser.validate((err) => {
-      expect(err.errors.email).to.exist
-      newUser2.validate((err2) => {
-        expect(err2.errors.email).to.not.exist
-        expect(err2.errors.thumbnail).to.not.exist
-        done()
-      })
-    })
+    const err = newUser.validateSync()
+    const err2 = newUser2.validateSync()
+    expect(err.errors.email).to.exist
+    expect(err2.errors.email).to.not.exist
+    expect(err2.errors.thumbnail).to.not.exist
+    done()
   })
 })

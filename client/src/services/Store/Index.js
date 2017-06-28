@@ -1,10 +1,11 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import {Provider} from 'react-redux'
 import { routerMiddleware, routerReducer, replace } from 'react-router-redux'
+import thunkMiddleware from 'redux-thunk'
 import logger from 'redux-logger'
 
-import {parseQuery} from '../Router/util.js'
-import {getClientLang} from '../Localization/util.js'
+import localeReducer from './reducers/locale.js'
+import authReducer from './reducers/auth.js'
 
 /**
  * Wrapper for the redux store
@@ -14,14 +15,11 @@ export default class Store {
     const middleware = routerMiddleware(history)
     this.store = createStore(
       combineReducers({
-        router: routerReducer
+        router: routerReducer,
+        auth: authReducer,
+        locale: localeReducer
       }),
-      applyMiddleware(middleware, logger)
+      applyMiddleware(middleware, thunkMiddleware, logger)
     )
-    const location = history.location
-    const queries = parseQuery(location.search)
-    if(!queries.lang) {
-      this.store.dispatch(replace(location.pathname + '?lang=' + getClientLang()))
-    }
   }
 }

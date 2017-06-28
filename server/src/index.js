@@ -16,12 +16,12 @@ app.use(Express.static(path.resolve(__dirname + '/../../client/build')))
 app.use(BodyParser.urlencoded({ extended: false }))
 app.use(BodyParser.json())
 
+app.get('*', function(req,res) {
+  console.log("test")
+  res.sendFile(path.resolve(__dirname, '../../client/build', 'index.html'))
+})
 app.use('/user', userRouter)
 app.use('/auth', authRouter)
-
-app.get('*', function(req,res) {
-  res.sendFile(path.resolve(__dirname, '/../../client/build', 'index.html'))
-})
 
 HTTPS.createServer({
   key: FS.readFileSync('./key.pem'),
